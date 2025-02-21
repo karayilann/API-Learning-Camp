@@ -26,12 +26,20 @@ namespace APIProjeKampi.WebApi.Controller
         [HttpPost]
         public IActionResult CreateContact(CreateContactDto createContactDto)
         {
-            Contact contact = new Contact();
-            contact.Address = createContactDto.Address;
-            contact.Email = createContactDto.Email;
-            contact.MapLocation = createContactDto.MapLocation;
-            contact.OpeningHours = createContactDto.OpeningHours;
-            contact.Phone = createContactDto.Phone;
+            if (createContactDto == null)
+            {
+                return BadRequest("createContactDto alanı gereklidir.");
+            }
+
+            Contact contact = new Contact
+            {
+                Address = createContactDto.Address,
+                Email = createContactDto.Email,
+                MapLocation = createContactDto.MapLocation,
+                OpeningHours = createContactDto.OpeningHours,
+                Phone = createContactDto.Phone
+            };
+
             _context.Contacts.Add(contact);
             _context.SaveChanges();
             return Ok("Ekleme işlemi başarılı");
