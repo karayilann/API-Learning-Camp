@@ -85,28 +85,28 @@ namespace APIProjeKampi.WebApi.Mapping
 
         public GeneralMapping()
         {
-            //CreateMap<Feature, ResultFeatureDto>().ReverseMap();
-            //CreateMap<Feature, CreateFeatureDto>().ReverseMap();
-            //CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
-            //CreateMap<Feature, UpdateResultFeatureDto>().ReverseMap();
+            CreateMap<Feature, ResultFeatureDto>().ReverseMap();
+            CreateMap<Feature, CreateFeatureDto>().ReverseMap();
+            CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
+            CreateMap<Feature, UpdateResultFeatureDto>().ReverseMap();
 
-            //CreateMap<Message, ResultMessageDto>().ReverseMap();
-            //CreateMap<Message, CreateMessageDto>().ReverseMap();
-            //CreateMap<Message, GetByIdMessageDto>().ReverseMap();
-            //CreateMap<Message, UpdateMessageDto>().ReverseMap();
+            CreateMap<Message, ResultMessageDto>().ReverseMap();
+            CreateMap<Message, CreateMessageDto>().ReverseMap();
+            CreateMap<Message, GetByIdMessageDto>().ReverseMap();
+            CreateMap<Message, UpdateMessageDto>().ReverseMap();
 
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Feature, ResultFeatureDto>().ReverseMap();
-                cfg.CreateMap<Feature, CreateFeatureDto>().ReverseMap();
-                cfg.CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
-                cfg.CreateMap<Feature, UpdateResultFeatureDto>().ReverseMap();
+            //var config = new MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap<Feature, ResultFeatureDto>().ReverseMap();
+            //    cfg.CreateMap<Feature, CreateFeatureDto>().ReverseMap();
+            //    cfg.CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
+            //    cfg.CreateMap<Feature, UpdateResultFeatureDto>().ReverseMap();
 
-                cfg.CreateMap<Message, ResultMessageDto>().ReverseMap();
-                cfg.CreateMap<Message, CreateMessageDto>().ReverseMap();
-                cfg.CreateMap<Message, GetByIdMessageDto>().ReverseMap();
-                cfg.CreateMap<Message, UpdateMessageDto>().ReverseMap();
-            });
+            //    cfg.CreateMap<Message, ResultMessageDto>().ReverseMap();
+            //    cfg.CreateMap<Message, CreateMessageDto>().ReverseMap();
+            //    cfg.CreateMap<Message, GetByIdMessageDto>().ReverseMap();
+            //    cfg.CreateMap<Message, UpdateMessageDto>().ReverseMap();
+            //});
 
         }
 
