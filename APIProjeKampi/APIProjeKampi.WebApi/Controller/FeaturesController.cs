@@ -49,19 +49,46 @@ namespace APIProjeKampi.WebApi.Controller
         }
 
         [HttpGet("GetFeature")]
-        public IActionResult GetFeature(int id)
+        //public IActionResult GetFeature(int id)
+        //{
+        //    var value = _context.Features.Find(id);
+        //    return Ok(_mapper.Map<GetByIdFeatureDto>(value));
+        //}
+        public async Task<IActionResult> GetFeature(int id)
         {
-            var value = _context.Features.Find(id);
-            return Ok(_mapper.Map<GetByIdFeatureDto>(value));
+            var feature = await _context.Features.FindAsync(id);
+            return Ok(_mapper.Map<GetByIdFeatureDto>(feature));
         }
 
+
+        // Videodan farklı olarak daha optimize yazılmaya çalışıldı.
+        // [FromBody] ile: İstek gövdesindeki veriler(JSON, XML vb.) beklenen formata göre otomatik deserialize edilir.
+        // Fakat ApiController bulunuyorsa bu attributeyi kullanmak sadece kodun okunabilirliğine katkı sunabilir.
+
         [HttpPut]
-        public IActionResult UpdateFeature(UpdateResultFeatureDto updateResultFeatureDto)
+        public async Task<IActionResult> UpdateFeature(int id, [FromBody] UpdateResultFeatureDto updateResultFeatureDto)
         {
-            var value = _mapper.Map<Feature>(updateResultFeatureDto);
-            _context.Features.Update(value);
-            return Ok("Güncelleme işlemi tamamlandı.");
+            if (updateResultFeatureDto == null || id != updateResultFeatureDto.FeatureId)
+                return BadRequest("Geçersiz ID");
+
+            var existingFeature = await _context.Features.FindAsync(id);
+            if (existingFeature == null)
+                return NotFound("Güncellenecek kayıt bulunamadı.");
+
+            _mapper.Map(updateResultFeatureDto, existingFeature); // Burada yeni bir mapleme işlemi uygulanmamakta, var olan güncellenir.
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
+
+        // Video
+        //[HttpPut]
+        //public IActionResult UpdateFeature(UpdateResultFeatureDto updateResultFeatureDto)
+        //{
+        //    var value = _mapper.Map<Feature>(updateResultFeatureDto);
+        //    _context.Features.Update(value);
+        //    return Ok("Güncelleme işlemi tamamlandı.");
+        //}
 
     }
 
