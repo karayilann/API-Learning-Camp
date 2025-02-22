@@ -40,13 +40,24 @@ namespace APIProjeKampi.WebApi.Controller
         }
 
         [HttpDelete]
-        public IActionResult DeleteFeature(int id)
+        //public IActionResult DeleteFeature(int id)
+        //{
+        //    var value = _context.Features.Find(id);
+        //    _context.Features.Remove(value);
+        //    _context.SaveChanges();
+        //    return Ok("Silme işlemi tamamlandı.");
+        //}
+        public async Task<IActionResult> DeleteFeature(int id)
         {
-            var value = _context.Features.Find(id);
+            var value = await _context.Features.FindAsync(id);
+            if (value == null)
+                return NotFound("Belirtilen ID ile veri bulunamadı.");
+
             _context.Features.Remove(value);
-            _context.SaveChanges();
-            return Ok("Silme işlemi tamamlandı.");
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
+
 
         [HttpGet("GetFeature")]
         //public IActionResult GetFeature(int id)
