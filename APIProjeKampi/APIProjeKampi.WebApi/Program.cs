@@ -1,10 +1,16 @@
+using System.Reflection;
 using APIProjeKampi.WebApi.Context;
+using APIProjeKampi.WebApi.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddDbContext<ApiContext>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); Another method for 10
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

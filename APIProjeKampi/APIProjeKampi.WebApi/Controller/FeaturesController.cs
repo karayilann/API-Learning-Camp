@@ -51,7 +51,7 @@ namespace APIProjeKampi.WebApi.Controller
         {
             var value = await _context.Features.FindAsync(id);
             if (value == null)
-                return NotFound("Belirtilen ID ile veri bulunamadı.");
+                return NotFound("Geçersiz ID.");
 
             _context.Features.Remove(value);
             await _context.SaveChangesAsync();
@@ -77,19 +77,12 @@ namespace APIProjeKampi.WebApi.Controller
         // Fakat ApiController bulunuyorsa bu attributeyi kullanmak sadece kodun okunabilirliğine katkı sunabilir.
 
         [HttpPut]
-        public async Task<IActionResult> UpdateFeature(int id, [FromBody] UpdateResultFeatureDto updateResultFeatureDto)
+        public async Task<IActionResult> UpdateFeature([FromBody] UpdateResultFeatureDto updateResultFeatureDto)
         {
-            if (updateResultFeatureDto == null || id != updateResultFeatureDto.FeatureId)
-                return BadRequest("Geçersiz ID");
-
-            var existingFeature = await _context.Features.FindAsync(id);
-            if (existingFeature == null)
-                return NotFound("Güncellenecek kayıt bulunamadı.");
-
-            _mapper.Map(updateResultFeatureDto, existingFeature); // Burada yeni bir mapleme işlemi uygulanmamakta, var olan güncellenir.
+            var feature = _mapper.Map<Feature>(updateResultFeatureDto);
+            _context.Features.Update(feature);
             await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok("Güncelleme işlemi tamamlandı");
         }
 
         // Video
