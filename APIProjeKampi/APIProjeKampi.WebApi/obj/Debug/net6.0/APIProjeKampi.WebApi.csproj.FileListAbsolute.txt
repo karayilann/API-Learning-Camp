@@ -80,3 +80,4 @@ D:\yazilimdosyalari\API-Learning-Camp\APIProjeKampi\APIProjeKampi.WebApi\obj\Deb
 D:\yazilimdosyalari\API-Learning-Camp\APIProjeKampi\APIProjeKampi.WebApi\obj\Debug\net6.0\staticwebassets\msbuild.APIProjeKampi.WebApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 D:\yazilimdosyalari\API-Learning-Camp\APIProjeKampi\APIProjeKampi.WebApi\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
 D:\yazilimdosyalari\API-Learning-Camp\APIProjeKampi\APIProjeKampi.WebApi\bin\Debug\net6.0\AutoMapper.dll
+D:\yazilimdosyalari\API-Learning-Camp\APIProjeKampi\APIProjeKampi.WebApi\bin\Debug\net6.0\FluentValidation.dll
