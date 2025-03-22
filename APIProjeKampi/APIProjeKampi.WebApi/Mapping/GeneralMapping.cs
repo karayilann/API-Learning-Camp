@@ -1,5 +1,6 @@
 ﻿using APIProjeKampi.WebApi.Dtos.FeatureDtos;
 using APIProjeKampi.WebApi.Dtos.MessageDtos;
+using APIProjeKampi.WebApi.Dtos.ProductDtos;
 using APIProjeKampi.WebApi.Entities;
 using AutoMapper;
 
@@ -94,6 +95,8 @@ namespace APIProjeKampi.WebApi.Mapping
             CreateMap<Message, CreateMessageDto>().ReverseMap();
             CreateMap<Message, GetByIdMessageDto>().ReverseMap();
             CreateMap<Message, UpdateMessageDto>().ReverseMap();
+
+            CreateMap<Product, CreateProductDto>().ReverseMap();
 
             //var config = new MapperConfiguration(cfg =>
             //{
