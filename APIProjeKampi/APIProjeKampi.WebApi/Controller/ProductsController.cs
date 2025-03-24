@@ -94,6 +94,14 @@ namespace APIProjeKampi.WebApi.Controller
             return Ok("Product Created With Category");
         }
 
+        [HttpGet("ProductListWithCategory")]
+        public IActionResult ProductListWithCategory()
+        {
+            var products = _context.Products.Include(x => x.Category).ToList();
+            var result = _mapper.Map<List<ResultProductWithCategoryDto>>(products);
+            return Ok(result);
+        }
+
 
     }
 }
