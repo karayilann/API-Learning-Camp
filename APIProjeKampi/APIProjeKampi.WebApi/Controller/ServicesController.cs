@@ -2,6 +2,7 @@
 using APIProjeKampi.WebApi.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIProjeKampi.WebApi.Controller
 {
@@ -18,9 +19,9 @@ namespace APIProjeKampi.WebApi.Controller
         }
 
         [HttpGet]
-        public ActionResult ServicesResult()
+        public async Task<ActionResult> ServicesResult()
         {
-            var values = _context.Services.ToList();
+            var values = await _context.Services.ToListAsync();
             return Ok(values);
         }
 
