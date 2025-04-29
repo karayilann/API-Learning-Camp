@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APIProjeKampi.WebUI.Dtos.UICategoryDtos;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace APIProjeKampi.WebUI.ViewComponents.DefaultMenuViewComponents
@@ -19,7 +20,9 @@ namespace APIProjeKampi.WebUI.ViewComponents.DefaultMenuViewComponents
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject(jsonData);
+                //var values = JsonConvert.DeserializeObject(jsonData);
+
+                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
                 return View(values);
             }
             return View();
