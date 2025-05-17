@@ -1,4 +1,5 @@
-﻿using APIProjeKampi.WebApi.Dtos.FeatureDtos;
+﻿using APIProjeKampi.WebApi.Dtos.ChefDto;
+using APIProjeKampi.WebApi.Dtos.FeatureDtos;
 using APIProjeKampi.WebApi.Dtos.MessageDtos;
 using APIProjeKampi.WebApi.Dtos.ProductDtos;
 using APIProjeKampi.WebApi.Dtos.TestimonialDtos;
@@ -10,9 +11,6 @@ namespace APIProjeKampi.WebApi.Mapping
 {
     public class GeneralMapping: Profile
     {
-
-
-
 
         /*
             Sık kullanılan AutoMapper fonksiyonları ve işlevleri
@@ -103,7 +101,10 @@ namespace APIProjeKampi.WebApi.Mapping
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category != null ? src.Category.CategoryName : "Kategori Yok"));
 
             CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
+            
             CreateMap<YummyEvent, CreateEventDto>().ReverseMap();
+
+            CreateMap<Chef, CreateChefDto>().ReverseMap();
 
             //var config = new MapperConfiguration(cfg =>
             //{
