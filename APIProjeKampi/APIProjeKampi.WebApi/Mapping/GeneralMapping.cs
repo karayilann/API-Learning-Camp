@@ -2,6 +2,7 @@
 using APIProjeKampi.WebApi.Dtos.MessageDtos;
 using APIProjeKampi.WebApi.Dtos.ProductDtos;
 using APIProjeKampi.WebApi.Dtos.TestimonialDtos;
+using APIProjeKampi.WebApi.Dtos.YummyEventDto;
 using APIProjeKampi.WebApi.Entities;
 using AutoMapper;
 
@@ -102,7 +103,7 @@ namespace APIProjeKampi.WebApi.Mapping
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category != null ? src.Category.CategoryName : "Kategori Yok"));
 
             CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
-
+            CreateMap<YummyEvent, CreateEventDto>().ReverseMap();
 
             //var config = new MapperConfiguration(cfg =>
             //{

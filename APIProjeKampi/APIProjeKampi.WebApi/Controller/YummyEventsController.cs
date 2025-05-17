@@ -1,5 +1,7 @@
 ﻿using APIProjeKampi.WebApi.Context;
+using APIProjeKampi.WebApi.Dtos.YummyEventDto;
 using APIProjeKampi.WebApi.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,12 +11,13 @@ namespace APIProjeKampi.WebApi.Controller
     [ApiController]
     public class YummyEventsController : ControllerBase
     {
-
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public YummyEventsController(ApiContext context)
+        public YummyEventsController(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -25,10 +28,12 @@ namespace APIProjeKampi.WebApi.Controller
         }
 
         [HttpPost]
-        public IActionResult AddYummyEvent(YummyEvent yummyEvent)
+        public async Task<IActionResult> AddYummyEvent(CreateEventDto yummyEvent)
         {
-            _context.YummyEvents.Add(yummyEvent);
-            _context.SaveChanges();
+            var map = _mapper.Map<YummyEvent>(yummyEvent);
+
+            _context.YummyEvents.Add(map);
+            await _context.SaveChangesAsync();
             return Ok("Etkinlik Başarıyla Eklendi.");
         }
 
