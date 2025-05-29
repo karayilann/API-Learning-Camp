@@ -59,24 +59,21 @@ namespace APIProjeKampi.WebApi.Controller
             return Ok(message);
         }
 
-        //[HttpPut]
-        //public async Task<IActionResult> UpdateMessage(UpdateMessageDto updateMessage)
-        //{
-        //    var message = _mapper.Map<Message>(updateMessage);
-        //    var findAsync = await _context.Messages.FindAsync(message);
-
-        //    if (message != null) _mapper.Map(findAsync, updateMessage);
-        //    await _context.SaveChangesAsync();
-        //    return Ok("Güncelleme işlemi tamamlandı");
-        //}
-
         [HttpPut]
-        public async Task<IActionResult> UpdateMessageS(UpdateMessageDto updateMessage)
+        public async Task<IActionResult> UpdateMessage(UpdateMessageDto updateMessage)
         {
             var message = _mapper.Map<Message>(updateMessage);
             _context.Messages.Update(message);
             await _context.SaveChangesAsync();
             return Ok("Güncelleme işlemi tamamlandı");
         }
+
+        [HttpGet("GetUnreadMessages")]
+        public IActionResult GetUnreadMessages()
+        {
+            var count =  _context.Messages.Where(m => !m.IsRead).ToList();
+            return Ok(count);
+        }
+
     }
 }
