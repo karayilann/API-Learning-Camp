@@ -1,0 +1,13 @@
+﻿namespace APIProjeKampi.WebUI.Dtos.UIMessageDtos
+{
+    public class ResultMessageUnreadDto
+    {
+        public int MessageId { get; set; }
+        public string NameSurname { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+        public DateTime SendDate { get; set; }
+        public bool IsRead { get; set; }
+    }
+}
