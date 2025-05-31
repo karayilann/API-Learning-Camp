@@ -1,6 +1,7 @@
 ﻿using APIProjeKampi.WebApi.Dtos.ChefDto;
 using APIProjeKampi.WebApi.Dtos.FeatureDtos;
 using APIProjeKampi.WebApi.Dtos.MessageDtos;
+using APIProjeKampi.WebApi.Dtos.NotificationDtos;
 using APIProjeKampi.WebApi.Dtos.ProductDtos;
 using APIProjeKampi.WebApi.Dtos.TestimonialDtos;
 using APIProjeKampi.WebApi.Dtos.YummyEventDto;
@@ -105,6 +106,12 @@ namespace APIProjeKampi.WebApi.Mapping
             CreateMap<YummyEvent, CreateEventDto>().ReverseMap();
 
             CreateMap<Chef, CreateChefDto>().ReverseMap();
+
+            CreateMap<Notification, CreateNotificationDto>().ReverseMap();
+            CreateMap<Notification, ResultNotificationDto>().ReverseMap();
+            CreateMap<Notification, GetNotificationByIdDto>().ReverseMap();
+            CreateMap<Notification, UpdateNotificationDto>().ReverseMap();
+
 
             //var config = new MapperConfiguration(cfg =>
             //{

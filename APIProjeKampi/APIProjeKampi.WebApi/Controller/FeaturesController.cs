@@ -15,7 +15,6 @@ namespace APIProjeKampi.WebApi.Controller
         private readonly IMapper _mapper;
         private readonly ApiContext _context;
 
-
         public FeaturesController(IMapper mapper, ApiContext context)
         {
             _mapper = mapper;
