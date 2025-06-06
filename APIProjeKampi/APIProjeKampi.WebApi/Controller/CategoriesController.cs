@@ -1,5 +1,7 @@
 ﻿using APIProjeKampi.WebApi.Context;
+using APIProjeKampi.WebApi.Dtos.CategoryDtos;
 using APIProjeKampi.WebApi.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +12,11 @@ namespace APIProjeKampi.WebApi.Controller
     public class CategoriesController : ControllerBase
     {
         private readonly ApiContext _context;
-
-        public CategoriesController(ApiContext context)
+        private readonly IMapper _mapper;
+        public CategoriesController(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -24,9 +27,10 @@ namespace APIProjeKampi.WebApi.Controller
         }
 
         [HttpPost]
-        public IActionResult AddCategory(Category category)
+        public IActionResult AddCategory(CreateCategoryDto category)
         {
-            _context.Categories.Add(category);
+            var mappedCategory = _mapper.Map<Category>(category);
+            _context.Categories.Add(mappedCategory);
             _context.SaveChanges();
             return Ok("Kategori Başarıyla Eklendi.");
         }
@@ -40,7 +44,6 @@ namespace APIProjeKampi.WebApi.Controller
             return Ok($"{id} nolu kategori silindi.");
         }
 
-        // WARNING : We cannot use the same attribute in the same controller.
         [HttpGet("GetCategory")]
         public IActionResult GetCategory(int id)
         {

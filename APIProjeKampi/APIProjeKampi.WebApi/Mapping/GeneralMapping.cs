@@ -1,4 +1,5 @@
-﻿using APIProjeKampi.WebApi.Dtos.ChefDto;
+﻿using APIProjeKampi.WebApi.Dtos.CategoryDtos;
+using APIProjeKampi.WebApi.Dtos.ChefDto;
 using APIProjeKampi.WebApi.Dtos.FeatureDtos;
 using APIProjeKampi.WebApi.Dtos.MessageDtos;
 using APIProjeKampi.WebApi.Dtos.NotificationDtos;
@@ -106,6 +107,8 @@ namespace APIProjeKampi.WebApi.Mapping
             CreateMap<YummyEvent, CreateEventDto>().ReverseMap();
 
             CreateMap<Chef, CreateChefDto>().ReverseMap();
+
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
 
             CreateMap<Notification, CreateNotificationDto>().ReverseMap();
             CreateMap<Notification, ResultNotificationDto>().ReverseMap();
