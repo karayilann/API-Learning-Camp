@@ -2,9 +2,10 @@
     @await Component.InvokeAsync("_NavbarFormInlineAdminLayoutComponent")
 
     <ul class="navbar-nav navbar-right">
+
         @await Component.InvokeAsync("_NavbarMessageListAdminLayoutComponentPartial")
         @await Component.InvokeAsync("_NavbarNotificationAdminLayoutComponentPartial")
         @await Component.InvokeAsync("_NavbarAccountMenuAdminLayoutComponentPartial")
 
-</ul>
+    </ul>
 </nav>
