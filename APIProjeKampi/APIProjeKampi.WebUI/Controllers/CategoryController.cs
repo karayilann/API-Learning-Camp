@@ -1,4 +1,5 @@
-﻿using APIProjeKampi.WebUI.Dtos.UICategoryDtos;
+﻿using System.Text;
+using APIProjeKampi.WebUI.Dtos.UICategoryDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -25,5 +26,27 @@ namespace APIProjeKampi.WebUI.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory(CreateCategoryDto dto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var data = JsonConvert.SerializeObject(dto);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            var message = await client.PostAsync("https://localhost:7086/api/Categories",content);
+            if (message.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CategoryList");
+            }
+
+            return View();
+        }
+    
     }
 }
