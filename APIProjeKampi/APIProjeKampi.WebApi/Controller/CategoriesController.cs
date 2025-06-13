@@ -52,9 +52,10 @@ namespace APIProjeKampi.WebApi.Controller
         }
 
         [HttpPut]
-        public IActionResult UpdateCategory(Category category)
+        public IActionResult UpdateCategory(UpdateCategoryDto category)
         {
-            var value = _context.Categories.Update(category);
+            var map = _mapper.Map<Category>(category);
+            var value = _context.Categories.Update(map);
             _context.SaveChanges();
             return Ok("Kategori Başarıyla Güncellendi.");
         }

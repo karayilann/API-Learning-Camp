@@ -1,6 +1,6 @@
-﻿@model ResultCategoryDto
+﻿@model UpdateCategoryDto
 
-@{
+@* @{
     ViewData["Title"] = "UpdateCategory";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -18,7 +18,7 @@
                         <form method="post">
                             <input type="hidden" asp-for="@Model.CategoryId" />
                             <label>Kategori Adı</label>
-                            <input type="text" asp-for="CategoryName" class="form-control" />
+                            <input type="text" asp-for="@Model.CategoryName" class="form-control" />
                             <br />
                             <button class="btn btn-success">Kategoriyi Güncelle </button>
                         </form>
@@ -28,4 +28,28 @@
         </div>
     </div>
 </section>
+ *@
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
 
+<div class="col-12 col-md-6 col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Kategori Güncelleme Sayfası</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="CategoryId" class="form-control">
+                <div class="form-group">
+                    <label>Kategori Adı</label>
+                    <input type="text" asp-for="CategoryName" class="form-control">
+                </div>
+                <button class="btn btn-primary">Kategori Güncelle</button>
+
+            </form>
+        </div>
+    </div>
+
+</div>

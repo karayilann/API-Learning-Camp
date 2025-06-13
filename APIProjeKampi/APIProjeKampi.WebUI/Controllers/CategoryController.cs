@@ -63,9 +63,24 @@ namespace APIProjeKampi.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync($"https://localhost:7086/api/Categories/GetCategory?id={id}");
             var jsonResponse = await response.Content.ReadAsStringAsync();
-            var category = JsonConvert.DeserializeObject<ResultCategoryDto>(jsonResponse);
+            var category = JsonConvert.DeserializeObject<UpdateCategoryDto>(jsonResponse);
             return View(category);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryDto dto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var data = JsonConvert.SerializeObject(dto);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync("https://localhost:7086/api/Categories", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CategoryList");
+            }
+
+            return View(dto);
+
+        }
     }
 }

@@ -109,6 +109,7 @@ namespace APIProjeKampi.WebApi.Mapping
             CreateMap<Chef, CreateChefDto>().ReverseMap();
 
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
 
             CreateMap<Notification, CreateNotificationDto>().ReverseMap();
             CreateMap<Notification, ResultNotificationDto>().ReverseMap();
