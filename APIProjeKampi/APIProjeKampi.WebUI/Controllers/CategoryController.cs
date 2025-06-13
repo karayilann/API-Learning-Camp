@@ -14,6 +14,7 @@ namespace APIProjeKampi.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
+        // Bu metot, kategori listesini görüntülemek için kullanılır.
         public async Task<IActionResult> CategoryList()
         {
             var client = _httpClientFactory.CreateClient();
@@ -27,6 +28,7 @@ namespace APIProjeKampi.WebUI.Controllers
             return View();
         }
 
+        // Bu metot, yeni bir kategori oluşturmak için kullanılan GET ve POST isteklerini işler.
         [HttpGet]
         public async Task<IActionResult> CreateCategory()
         {
@@ -47,6 +49,23 @@ namespace APIProjeKampi.WebUI.Controllers
 
             return View();
         }
-    
+
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.DeleteAsync($"https://localhost:7086/api/Categories?id={id}");
+            return RedirectToAction("CategoryList");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateCategory(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync($"https://localhost:7086/api/Categories/GetCategory?id={id}");
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var category = JsonConvert.DeserializeObject<ResultCategoryDto>(jsonResponse);
+            return View(category);
+        }
+
     }
 }

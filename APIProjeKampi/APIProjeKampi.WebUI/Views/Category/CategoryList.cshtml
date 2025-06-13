@@ -4,7 +4,9 @@
 @{
     ViewData["Title"] = "CategoryList";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int categoryCount=0;
 }
+
 
     <section class="section">
         <div class="section-body">
@@ -28,22 +30,20 @@
                                 
                                 @foreach (var item in Model)
                                 {
+                                    categoryCount++;
                                     <tr>
-                                        <th scope="row">@item.CategoryId</th>
+                                        <th scope="row">@categoryCount</th>
                                         <td>@item.CategoryName</td>
                                         <td><a href ="/Category/DeleteCategory/@item.CategoryId" class ="btn btn-danger"> Sil </a></td>
-                                        <td><a href ="/Category/UpdateCategory/@item.CategoryId" class ="btn btn-success"> Güncelle </a></td>
+                                        <td><a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-success"> Güncelle </a></td>
                                     </tr>
                                 }
                                 </tbody>
                             </table>
-                        <a href="/Category/UpdateCategory/" class="btn btn-success"> Yeni Kategori Oluştur </a>
+                        <a href="/Category/CreateCategory/" class="btn btn-success"> Yeni Kategori Oluştur </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-
