@@ -2,7 +2,6 @@
 using APIProjeKampi.WebApi.Dtos.CategoryDtos;
 using APIProjeKampi.WebApi.Entities;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjeKampi.WebApi.Controller
