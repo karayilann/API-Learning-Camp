@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
+using APIProjeKampi.WebUI.Dtos.UICategoryDtos;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace APIProjeKampi.WebUI.Controllers
 {
@@ -18,7 +20,7 @@ namespace APIProjeKampi.WebUI.Controllers
         public async Task<IActionResult> ProductList()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7086/api/Products");
+            var response = await client.GetAsync("https://localhost:7086/api/Products/ProductListWithCategory");
             if (response.IsSuccessStatusCode)
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -32,6 +34,18 @@ namespace APIProjeKampi.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateProduct()
         {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync("https://localhost:7086/api/Categories");
+            var jsonData = await response.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+            List<SelectListItem> categoryList = values
+                .Select(c => new SelectListItem
+                {
+                    Text = c.CategoryName,
+                    Value = c.CategoryId.ToString()
+                }).ToList();
+            ViewBag.CategoryList = categoryList;
+
             return View();
         }
 
