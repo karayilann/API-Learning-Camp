@@ -101,6 +101,7 @@ namespace APIProjeKampi.WebApi.Mapping
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, ResultProductWithCategoryDto>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category != null ? src.Category.CategoryName : "Kategori Yok"));
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
 
             CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
             

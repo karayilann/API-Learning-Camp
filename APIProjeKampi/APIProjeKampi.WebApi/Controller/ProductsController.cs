@@ -74,11 +74,9 @@ namespace APIProjeKampi.WebApi.Controller
         }
 
         [HttpPut]
-        public IActionResult UpdateProduct(Product product)
+        public IActionResult UpdateProduct(UpdateProductDto product)
         {
-            var validationResult = _validator.Validate(product);
-
-            if (!validationResult.IsValid) return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
+            var value = _mapper.Map<Product>(product);
             _context.Update(product);
             _context.SaveChanges();
             return Ok("Ürün güncelleme işlemi başarılı");
