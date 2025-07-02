@@ -77,8 +77,20 @@ namespace APIProjeKampi.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync($"https://localhost:7086/api/Products/GetProduct?id={id}");
             var jsonResponse = await response.Content.ReadAsStringAsync();
-            var Product = JsonConvert.DeserializeObject<UpdateProductDto>(jsonResponse);
-            return View(Product);
+            var product = JsonConvert.DeserializeObject<UpdateProductDto>(jsonResponse);
+            
+            var categoryResponse = await client.GetAsync("https://localhost:7086/api/Categories");
+            var jsonData = await categoryResponse.Content.ReadAsStringAsync();
+            var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+            List<SelectListItem> categoryList = categories
+                .Select(c => new SelectListItem
+                {
+                    Text = c.CategoryName,
+                    Value = c.CategoryId.ToString()
+                }).ToList();
+            ViewBag.CategoryList = categoryList;
+
+            return View(product);
         }
 
         [HttpPost]

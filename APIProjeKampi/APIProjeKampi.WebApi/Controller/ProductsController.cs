@@ -76,10 +76,10 @@ namespace APIProjeKampi.WebApi.Controller
         [HttpPut]
         public IActionResult UpdateProduct(UpdateProductDto product)
         {
-            var value = _mapper.Map<Product>(product);
-            _context.Update(product);
+            var map = _mapper.Map<Product>(product);
+            var value = _context.Products.Update(map);
             _context.SaveChanges();
-            return Ok("Ürün güncelleme işlemi başarılı");
+            return Ok("Kategori Başarıyla Güncellendi.");
         }
 
 
