@@ -21,7 +21,7 @@ namespace APIProjeKampi.WebUI.ViewComponents.DefaultMenuViewComponents
             if (response.IsSuccessStatusCode)
             {
                 var readAsStringAsync = await response.Content.ReadAsStringAsync();
-                var list = JsonConvert.DeserializeObject<List<ResultProductDTO>>(readAsStringAsync);
+                var list = JsonConvert.DeserializeObject<List<ResultProductDto>>(readAsStringAsync);
                 return View(list);
             }
 
