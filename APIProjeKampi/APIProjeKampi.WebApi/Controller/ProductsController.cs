@@ -66,7 +66,7 @@ namespace APIProjeKampi.WebApi.Controller
             return Ok("Silme işlemi başarılı");
         }
 
-        [HttpGet("Get Product")]
+        [HttpGet("GetProduct/{id}")]
         public IActionResult GetProduct(int id)
         {
             var value = _context.Products.Find(id);

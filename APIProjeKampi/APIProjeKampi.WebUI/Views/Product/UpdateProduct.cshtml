@@ -1,4 +1,4 @@
-﻿
+﻿@* burada textleri doldur (model viewe nasıl yansıtılır)*@
 @model UpdateProductDto
 
 @{
@@ -12,20 +12,21 @@
             <h4>Ürün Güncelleme Sayfası</h4>
         </div>
         <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ProductId" class="form-control">
+            <form method="post" asp-controller="Product" asp-action="UpdateProduct">
+                
                 <div class="form-group">
                     
+                    <input type="hidden" name="ProductId" class="form-control" value="@Model.ProductId">
                     <label>Ürün Adı :</label>
-                    <input type="text" asp-for="ProductName" class="form-control">
+                    <input type="text" name="ProductName" class="form-control" >
                     <br />
                     
                     <label>Ürün Tanımı :</label>
-                    <input type="text" asp-for="ProductDescription" class="form-control">
+                    <input type="text" name="ProductDescription" class="form-control">
                     <br />
                     
                     <label>Ürün Fiyatı :</label>
-                    <input type="text" asp-for="Price" class="form-control">
+                    <input type="text" name="Price" class="form-control">
                     <br />
                     
                     <label>Ürün Kategorisi : </label>
@@ -35,7 +36,7 @@
                     <br />
                     
                     <label>Ürün Resmi :</label>
-                    <input type="text" asp-for="ImageURL" class="form-control">
+                    <input type="text" name="ImageURL" class="form-control">
                     <br />
 
                 </div>

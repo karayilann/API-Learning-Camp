@@ -75,7 +75,7 @@ namespace APIProjeKampi.WebUI.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:7086/api/Products/GetProduct?id={id}");
+            var response = await client.GetAsync($"https://localhost:7086/api/Products/GetProduct/{id}");//post
             var jsonResponse = await response.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<UpdateProductDto>(jsonResponse);
             
