@@ -18,15 +18,15 @@
                     
                     <input type="hidden" name="ProductId" class="form-control" value="@Model.ProductId">
                     <label>Ürün Adı :</label>
-                    <input type="text" name="ProductName" class="form-control" >
+                    <input type="text" name="ProductName" class="form-control" value="@Model.ProductName" >
                     <br />
                     
                     <label>Ürün Tanımı :</label>
-                    <input type="text" name="ProductDescription" class="form-control">
+                    <input type="text" name="ProductDescription" class="form-control" value="@Model.ProductDescription">
                     <br />
                     
                     <label>Ürün Fiyatı :</label>
-                    <input type="text" name="Price" class="form-control">
+                    <input type="text" name="Price" class="form-control" value="@Model.Price">
                     <br />
                     
                     <label>Ürün Kategorisi : </label>
@@ -36,8 +36,16 @@
                     <br />
                     
                     <label>Ürün Resmi :</label>
-                    <input type="text" name="ImageURL" class="form-control">
+                    <input type="text" name="ImageURL" class="form-control" value="@Model.ImageURL">
                     <br />
+
+                    @if (!string.IsNullOrEmpty(Model.ImageURL))
+                    {
+                        <div>
+                            <label>Mevcut Ürün Resmi:</label><br />
+                            <img src="@Model.ImageURL" alt="Ürün Resmi" style="max-width:200px;max-height:200px;" />
+                        </div>
+                    }
 
                 </div>
                 <button class="btn btn-primary">Ürünü Güncelle</button>
