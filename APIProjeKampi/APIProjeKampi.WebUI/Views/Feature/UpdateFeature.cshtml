@@ -1,0 +1,80 @@
+﻿
+
+@model UpdateFeatureDto
+
+@{
+    ViewData["Title"] = "UpdateFeature";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+<div class="col-12 col-md-6 col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Feature Güncelleme Sayfası</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-controller="Feature" asp-action="UpdateFeature">
+
+                <div class="form-group">
+
+                    <input type="hidden" name="FeatureId" class="form-control" value="@Model.FeatureId">
+                    
+                    <label>Adı :</label>
+                    <input type="text" name="Title" class="form-control" value="@Model.Title">
+                    <br />
+
+                    <label>Alt Başlık :</label>
+                    <input type="text" name="SubTitle" class="form-control" value="@Model.SubTitle">
+                    <br />
+
+                    <label>Tanım :</label>
+                    <input type="text" name="Description" class="form-control" value="@Model.Description">
+                    <br />
+
+                    @if (!string.IsNullOrEmpty(Model.ImageURL))
+                    {
+                        <div>
+                            <label>Mevcut Ürün Resmi:</label><br />
+                            <img src="@Model.ImageURL" alt="Ürün Resmi" style="max-width:200px;max-height:200px;" />
+                        </div>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(Model.VideoURL))
+                    {
+                        <div>
+                            <label>Mevcut YouTube Videosu:</label><br />
+                            @{
+                                string videoId = null;
+                                var url = Model.VideoURL;
+                                if (url.Contains("youtube.com/watch?v="))
+                                {
+                                    videoId = url.Split("v=")[1].Split('&')[0];
+                                }
+                                else if (url.Contains("youtu.be/"))
+                                {
+                                    videoId = url.Split("youtu.be/")[1].Split('?')[0];
+                                }
+                            }
+                            @if (!string.IsNullOrEmpty(videoId))
+                            {
+                                <iframe width="350" height="200"
+                                        src="https://www.youtube.com/embed/@videoId"
+                                        frameborder="0"
+                                        allowfullscreen>
+                                </iframe>
+                            }
+                            else
+                            {
+                                <span>Geçerli bir YouTube linki girilmemiş.</span>
+                            }
+                        </div>
+                    }
+
+                </div>
+                <button class="btn btn-primary">Ürünü Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
